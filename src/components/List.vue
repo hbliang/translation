@@ -12,9 +12,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="operator" v-show="items.length > 0">
-      <a class="clean-history" @click="cleanHistory">Clean History</a>
-    </div>
+    
   </div>
 </template>
 
@@ -29,15 +27,12 @@ export default {
     }
   },
   methods: {
-    cleanHistory() {
-      this.items = [];
-      store.history.save(this.items);
-    }
+    
   },
   watch: {
     items: {
       handler(value, oldValue) {
-        store.history.save(value);
+        this.$emit('updateItems', value);
       },
       deep: true
     }
@@ -47,8 +42,6 @@ export default {
 
 <style lang="scss">
 .history {
-  margin-top: 5px;
-
   .item-wrapper {
     margin: 5px 1px;
     padding: 5px;
@@ -63,15 +56,8 @@ export default {
     .favorite {
       padding: 11px;
     }
-  }
-  .operator {
-    margin: 15px 0;
-    text-align: center;
-    
-    .clean-history {
-      color: #0000FF;
-    }
-  }
+  } 
 }
+  
 </style>
 

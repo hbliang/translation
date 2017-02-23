@@ -29,7 +29,11 @@
         </div>
       </form>
 
-      <list-view :items="items"></list-view>
+      <list-view :items="items" @updateItems="updateItems"></list-view>
+
+      <div class="operator" v-show="items.length > 0">
+        <a class="clean-history" @click="cleanHistory">Clean History</a>
+      </div>
 
       <bottom-bar-view></bottom-bar-view>
     </div>
@@ -108,9 +112,16 @@ export default {
       this.selectedType = type;
       this.selectedLang = lang;
     },
+    updateItems(items) {
+      store.history.save(items);
+    },
     updateLang(type, lang) {
       // this[type] = lang;
       this.$set(this, type, lang);
+    },
+    cleanHistory() {
+      this.items = [];
+      store.history.save(this.items);
     }
   }
 }
@@ -185,6 +196,16 @@ export default {
 
   .result-footer {
     height: 33px;
+  }
+}
+
+
+.operator {
+  margin: 15px 0;
+  text-align: center;
+  
+  .clean-history {
+    color: #0000FF;
   }
 }
 
