@@ -159,6 +159,7 @@ export default {
     padding: 10px 0 0 50px;
     font-size: 22px;
     outline: none;
+    border: none;
   }
 
   .button {

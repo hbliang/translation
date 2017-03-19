@@ -13,6 +13,7 @@ import './assets/font/scss/font-awesome.scss';
 Vue.component('HeaderView', HeaderView);
 Vue.component('BottomBarView', BottomBarView);
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
